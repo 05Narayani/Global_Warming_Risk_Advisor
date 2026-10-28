@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Global Warming Risk Advisor</title>
+<style>
+:root{--green:#153e35;--green2:#28664f;--pale:#eaf3e8;--ink:#1c3029;--muted:#60736b;--line:#dce6df;--surface:#fff;--soft:#f5f8f5;--amber:#b17a22;--red:#bd4e3b}
+*{box-sizing:border-box}body{margin:0;background:#eef3ef;color:var(--ink);font-family:Arial,Helvetica,sans-serif;line-height:1.5}
+a{color:inherit}.wrap{max-width:1050px;margin:auto;padding:24px}.hero{background:var(--green);color:#f4f8ed;border-radius:20px;padding:34px;position:relative;overflow:hidden}
+.eyebrow{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#b8d9b1;font-weight:700}.hero h1{font-size:clamp(30px,5vw,48px);line-height:1.05;margin:16px 0}.hero p{color:#d7e6d9;max-width:600px}.earth{position:absolute;right:10px;bottom:-45px;font-size:170px;opacity:.17;pointer-events:none}.tag{display:inline-block;border:1px solid #729987;border-radius:20px;padding:6px 10px;font-size:11px;color:#e0eee2;margin:3px}
+.grid{display:grid;gap:14px}.metrics{grid-template-columns:repeat(3,minmax(0,1fr));margin:16px 0}.metric,.panel{background:var(--surface);border:1px solid var(--line);border-radius:15px;padding:20px}.metric{background:var(--soft)}.metric .small{font-size:12px;color:var(--muted)}.metric strong{font-size:25px;display:block;margin:5px 0}.panel{margin:16px 0}.section-label{font-size:11px;letter-spacing:1.6px;font-weight:800;color:var(--muted)}h2{font-size:24px;margin:5px 0 10px}h3{margin:0 0 8px}.muted{font-size:13px;color:var(--muted)}.form-grid{grid-template-columns:repeat(2,minmax(0,1fr));margin:18px 0}.field label{display:block;font-size:13px;font-weight:700;margin-bottom:8px}.field select{width:100%;padding:12px;border:1px solid #cbd8cf;border-radius:9px;background:white;color:var(--ink);font-size:14px}
+button{font:inherit;cursor:pointer}.btn{border:1px solid var(--line);background:white;border-radius:9px;padding:11px 14px;font-size:13px;font-weight:700;min-height:42px}.primary{background:var(--green2);border-color:var(--green2);color:white}.wide{width:100%}.result{margin-top:14px;background:var(--soft);border-radius:12px;padding:18px}.result-row{display:flex;gap:18px;align-items:center;flex-wrap:wrap}.risknum{font-size:45px;font-weight:800;line-height:1}.bar{height:9px;background:#dce6df;border-radius:9px;overflow:hidden;margin-top:14px}.bar span{height:100%;display:block;border-radius:9px;transition:width .3s}.hazards{grid-template-columns:repeat(4,minmax(0,1fr));margin:14px 0}.hazard-btn{min-height:54px}.hazard-detail,.action{background:var(--soft);border-radius:11px;padding:15px}.action{display:flex;gap:12px;align-items:flex-start;font-size:13px}.action input{margin-top:4px;accent-color:var(--green2);width:17px;height:17px;flex-shrink:0}.actions{display:grid;gap:10px}.progress-row{display:flex;justify-content:space-between;gap:12px;margin-top:18px;font-size:13px;font-weight:700}.resource{display:block;text-decoration:none;background:var(--soft);padding:14px;border-radius:10px;margin-top:10px}.resource:hover{outline:1px solid #93b8a1}.resource strong{display:block}.footer{font-size:12px;color:var(--muted);padding:8px 2px 25px}
+button:focus-visible,a:focus-visible,select:focus-visible,input:focus-visible{outline:3px solid #83b99b;outline-offset:2px}
+@media(max-width:650px){.wrap{padding:12px}.hero{padding:23px}.earth{font-size:110px;right:-18px}.metrics{grid-template-columns:1fr}.form-grid{grid-template-columns:1fr}.hazards{grid-template-columns:repeat(2,minmax(0,1fr))}.panel{padding:16px}}
+</style>
+</head>
+<body>
+<main class="wrap" id="app">
+<header class="hero">
+<span class="tag">🌍 CLIMATE INTELLIGENCE · INTERACTIVE TOOL</span>
+<div class="earth" aria-hidden="true">🌎</div>
+<div class="eyebrow" style="margin-top:22px">Understand your environment</div>
+<h1>GLOBAL WARMING<br>RISK ADVISOR<span style="color:#b6dca9">.</span></h1>
+<p>Explore climate hazards, assess your area's potential exposure, and discover practical ways to build a more climate-resilient future.</p>
+<div><span class="tag">01 / Assess risk</span><span class="tag">02 / Explore impacts</span><span class="tag">03 / Take action</span></div>
+</header>
+<section class="grid metrics" aria-label="Climate facts">
+<div class="metric"><span class="small">MAIN DRIVER</span><strong>CO₂</strong><span class="muted">Greenhouse gas emissions</span></div>
+<div class="metric"><span class="small">KEY HAZARDS</span><strong>04</strong><span class="muted">Heat · Flood · Drought · Coast</span></div>
+<div class="metric"><span class="small">YOUR NEXT STEP</span><strong>Act now</strong><span class="muted">Assess, prepare, reduce emissions</span></div>
+</section>
+<section class="panel">
+<div class="section-label">01 — PERSONALIZED ASSESSMENT</div><h2>Assess your climate risk</h2><p class="muted">Choose the conditions closest to your area. This is an educational screening score, not an official forecast.</p>
+<div class="grid form-grid">
+<div class="field"><label for="region">Region type</label><select id="region"><option value="city">Urban city</option><option value="coastal">Coastal area</option><option value="rural">Rural / agricultural</option><option value="dry">Dry / drought-prone area</option><option value="hills">Hilly area</option></select></div>
+<div class="field"><label for="heat">How often do you experience extreme heat?</label><select id="heat"><option value="1">Rarely</option><option value="2" selected>Sometimes</option><option value="3">Frequently</option><option value="4">Very frequently</option></select></div>
+<div class="field"><label for="flood">Flooding or heavy rainfall in your area</label><select id="flood"><option value="1">Rare / no known history</option><option value="2" selected>Occasional heavy rain</option><option value="3">Frequent waterlogging</option><option value="4">Repeated serious flooding</option></select></div>
+<div class="field"><label for="water">How reliable is your water supply?</label><select id="water"><option value="1">Very reliable</option><option value="2" selected>Occasional shortages</option><option value="3">Frequent shortages</option><option value="4">Severe / prolonged shortages</option></select></div>
+</div>
+<button id="assess" class="btn primary wide">Calculate my risk →</button>
+<div id="result" class="result" aria-live="polite"><div class="muted">YOUR SCREENING RESULT</div><div class="result-row" style="margin-top:8px"><div><strong>Ready to assess</strong><div class="muted">Complete your selections and calculate.</div></div><span style="font-size:32px" aria-hidden="true">🌱</span></div></div>
+</section>
+<section class="panel"><div class="section-label">02 — EXPLORE THE THREATS</div><h2>Climate hazard explorer</h2><p class="muted">Select a hazard to understand its possible impacts and protective actions.</p>
+<div class="grid hazards" id="hazards"><button class="btn hazard-btn" data-hazard="heat">☀️ Extreme heat</button><button class="btn hazard-btn" data-hazard="flood">🌧️ Flooding</button><button class="btn hazard-btn" data-hazard="drought">💧 Drought</button><button class="btn hazard-btn" data-hazard="coast">🌊 Sea-level rise</button></div>
+<div id="hazard-detail" class="hazard-detail" aria-live="polite"><h3>☀️ Extreme heat</h3><p class="muted">Rising temperatures can increase heat-related illness, energy demand, and stress on crops and ecosystems.</p><strong style="font-size:13px">What you can do</strong><p class="muted">Stay hydrated, check local heat alerts, use shade, and support urban trees and cool roofs.</p></div></section>
+<section class="panel"><div class="section-label">03 — YOUR ACTION PLAN</div><h2>Small actions. Meaningful change.</h2><p class="muted">Mark actions as you complete them to track your progress in this session.</p>
+<div class="actions" id="actions">
+<label class="action"><input type="checkbox" class="check"><span><strong>Save electricity</strong><br>Switch off unused appliances and choose efficient lighting.</span></label>
+<label class="action"><input type="checkbox" class="check"><span><strong>Choose lower-carbon travel</strong><br>Walk, cycle, carpool, or use public transport when practical.</span></label>
+<label class="action"><input type="checkbox" class="check"><span><strong>Reduce waste</strong><br>Reuse items, recycle correctly, and avoid unnecessary food waste.</span></label>
+<label class="action"><input type="checkbox" class="check"><span><strong>Prepare for local hazards</strong><br>Follow official weather alerts and know your area's safe routes.</span></label>
+</div>
+<div class="progress-row"><span>Your progress</span><span id="progress-label">0 of 4 completed</span></div><div class="bar"><span id="progress" style="width:0%;background:#398362"></span></div><button id="reset" class="btn" style="margin-top:14px">Reset progress</button>
+</section>
+<section class="panel"><h2>Explore trusted climate data</h2><p class="muted">The screening score uses illustrative weights and your answers; it is not measured local climate data. For scientific observations and regional projections, use these resources.</p>
+<a class="resource" href="https://interactive-atlas.ipcc.ch/regional" target="_blank" rel="noopener noreferrer"><strong>IPCC Interactive Atlas ↗</strong><span class="muted">Explore regional climate changes and warming scenarios.</span></a>
+<a class="resource" href="https://indicators.climate.copernicus.eu/" target="_blank" rel="noopener noreferrer"><strong>Climate indicators dashboard ↗</strong><span class="muted">Explore greenhouse gases, global warming, and climate impacts.</span></a>
+<p class="muted" style="margin-top:16px">Disclaimer: This tool provides general educational guidance, not a location-specific emergency warning or scientific risk assessment. For immediate threats, follow local authorities and official weather alerts.</p></section>
+<footer class="footer">GLOBAL WARMING RISK ADVISOR · Educational climate awareness project</footer>
+</main>
+<script>
+(function(){
+const $=id=>document.getElementById(id);
+const hazards={
+heat:{title:'☀️ Extreme heat',body:'Rising temperatures can increase heat-related illness, energy demand, and stress on crops and ecosystems.',action:'Stay hydrated, check local heat alerts, use shade, and support urban trees and cool roofs.'},
+flood:{title:'🌧️ Heavy rainfall & flooding',body:'Intense rainfall can overwhelm drainage, damage homes and roads, contaminate water, and disrupt essential services.',action:'Keep drains clear, avoid walking or driving through floodwater, and follow official evacuation advice.'},
+drought:{title:'💧 Drought & water stress',body:'Long dry periods can reduce water availability, affect agriculture, increase wildfire danger, and strain ecosystems.',action:'Fix leaks, use water efficiently, protect watersheds, and follow local water-conservation guidance.'},
+coast:{title:'🌊 Sea-level rise',body:'Rising seas can worsen coastal flooding, erosion, saltwater intrusion, and storm-surge impacts in exposed coastal areas.',action:'Follow coastal planning guidance, protect natural buffers, and check official local flood and evacuation information.'}
+};
+document.querySelectorAll('[data-hazard]').forEach(btn=>btn.addEventListener('click',()=>{
+document.querySelectorAll('[data-hazard]').forEach(b=>{b.style.background='';b.style.color='';});
+btn.style.background='#28664f';btn.style.color='#fff';
+const h=hazards[btn.dataset.hazard],box=$('hazard-detail');
+box.replaceChildren();
+const title=document.createElement('h3');title.textContent=h.title;
+const body=document.createElement('p');body.className='muted';body.textContent=h.body;
+const label=document.createElement('strong');label.style.fontSize='13px';label.textContent='What you can do';
+const action=document.createElement('p');action.className='muted';action.textContent=h.action;
+box.append(title,body,label,action);
+}));
+$('assess').addEventListener('click',()=>{
+const region=$('region').value,heat=+$('heat').value,flood=+$('flood').value,water=+$('water').value;
+const weights={city:1,coastal:2,rural:1,dry:2,hills:2};
+const score=Math.max(0,Math.min(100,Math.round(((heat+flood+water+weights[region]-4)/12)*100)));
+const level=score<35?'Lower screening concern':score<65?'Moderate screening concern':'Higher screening concern';
+const color=score<35?'#327b50':score<65?'#b17a22':'#bd4e3b';
+const rec=[];
+if(heat>=3)rec.push('Plan for hot days, hydration, shade and heat alerts.');
+if(flood>=3||region==='coastal'||region==='hills')rec.push('Review local flood alerts, drainage and safe evacuation routes.');
+if(water>=3||region==='dry'||region==='rural')rec.push('Conserve water and check local drought guidance.');
+if(!rec.length)rec.push('Keep monitoring local forecasts and continue reducing emissions.');
+const box=$('result');box.replaceChildren();
+const small=document.createElement('div');small.className='muted';small.textContent='YOUR EDUCATIONAL SCREENING RESULT';
+const row=document.createElement('div');row.className='result-row';row.style.marginTop='12px';
+const num=document.createElement('div');num.className='risknum';num.style.color=color;num.textContent=score+'/100';
+const info=document.createElement('div');const heading=document.createElement('strong');heading.textContent=level;heading.style.fontSize='18px';const sub=document.createElement('div');sub.className='muted';sub.textContent='Based on the choices you selected';info.append(heading,sub);row.append(num,info);
+const bar=document.createElement('div');bar.className='bar';const fill=document.createElement('span');fill.style.width=score+'%';fill.style.background=color;bar.append(fill);
+const recTitle=document.createElement('strong');recTitle.textContent='Suggested priorities';recTitle.style.fontSize='13px';recTitle.style.display='block';recTitle.style.marginTop='16px';
+const list=document.createElement('ul');list.className='muted';list.style.paddingLeft='20px';rec.forEach(t=>{const li=document.createElement('li');li.textContent=t;list.append(li)});
+const disclaimer=document.createElement('p');disclaimer.className='muted';disclaimer.style.marginTop='12px';disclaimer.textContent='This score is a simplified demonstration, not a validated prediction of actual risk. Real risk depends on local hazard records, exposure, infrastructure and vulnerability.';
+box.append(small,row,bar,recTitle,list,disclaimer);
+});
+function update(){const checks=[...document.querySelectorAll('.check')],n=checks.filter(c=>c.checked).length;$('progress-label').textContent=n+' of '+checks.length+' completed';$('progress').style.width=(n/checks.length*100)+'%'}
+document.querySelectorAll('.check').forEach(c=>c.addEventListener('change',update));
+$('reset').addEventListener('click',()=>{document.querySelectorAll('.check').forEach(c=>c.checked=false);update()});
+})();
+</script>
+</body>
+</html>
